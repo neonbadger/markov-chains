@@ -18,17 +18,17 @@ def open_and_read_file(file_path):
 
 
 def make_chains(text_string, n):
-    """Takes input text as string and number for n-gram; 
+    """Takes input text as string and number for n-gram;
     returns a dictionary of markov chains.
 
-    A chain will be a key that consists of a tuple of n-gram 
-    (word_1, word_2 ... word_n) and the value would be a list 
+    A chain will be a key that consists of a tuple of n-gram
+    (word_1, word_2 ... word_n) and the value would be a list
     of the word(s) that follow those words in the input text.
 
     For example:
 
         >>> make_chains("Hi hi my friend how are you", 5)
-        {("Hi", "hi", "my", "friend", "how"): ['are'], 
+        {("Hi", "hi", "my", "friend", "how"): ['are'],
          ("hi", "my", "friend", "how", "are"): ['you']}
     """
 

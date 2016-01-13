@@ -17,8 +17,6 @@ def open_and_read_file(file_path):
     file_obj.close()
 
     return file_text
-    
-# text_file = open_and_read_file("green-eggs.txt")
 
 
 def make_chains(text_string):
@@ -31,20 +29,20 @@ def make_chains(text_string):
     For example:
 
         >>> make_chains("hi there mary hi there juanita")
-        {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'], ('mary', 'hi': ['there']}
+        {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'], 
+        ('mary', 'hi'): ['there']}
     """
     words = text_string.split()  
 
-    # list_of_keys = []
     
-
     chains_dict = {}
 
     for i in range(len(words) -2):
+    # loop meaningful only till len(words) - 3
+    # last three values: key[0], key[1], value (dict(key))
+
         key_tuple = (words[i], words[i + 1])
         
-        # list_of_keys.append(key_tuple)
-
         if key_tuple not in chains_dict:
             chains_dict[key_tuple] = [words[i+2]]
         else: 
@@ -52,8 +50,6 @@ def make_chains(text_string):
     
     return chains_dict
 
-
-# chains_file = make_chains(text_file)
 
 
 def make_text(chains):
@@ -72,8 +68,8 @@ def make_text(chains):
     final_output = [random_key[0], random_key[1]]
 
     while random_key in chains: 
-        # keep looping as long as the word set is a key in the dictionary "chains" followed by words to add
-        # if no key in dictionary, loop stops, poem completed
+        # keep looping as long as the word set is a key in the dict "chains"
+        # if no key in dictionary, loop stops, random text completed
         
         random_key_position_two = choice(chains[random_key]) 
         random_key = (random_key[1], random_key_position_two)
@@ -81,17 +77,16 @@ def make_text(chains):
         # random_key tuple = (random_key_position_1, random_key_position_2)
         # random_key tuple gets updated
         # so random_key_position_2 moves to random_key_position_1
-        # and random_key_position_2 then filled by a random value from the value set matched by the random_key tuple
+        # and random_key_position_2 then filled by a random value 
+        # pulled from the value set matched by the random_key tuple
 
         final_output.append(random_key_position_two)
 
     text = (" ").join(final_output)
 
-    # your code goes here
-
     return text 
 
-
+# use sys.argv to input the text_file as corpus
 input_path = sys.argv[1]
 
 # Open the file and turn it into one long string
